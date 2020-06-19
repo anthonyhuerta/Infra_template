@@ -1,0 +1,15 @@
+aws ec2 run-instances --image-id ami-0d6621c01e8c2de2c --count 1 --instance-type t2.micro --key-name udacityKeyPair --security-group-ids sg-039a96aec81a82230 --subnet-id subnet-04210f7c61a1418f8
+
+
+aws iam create-role --role-name udacity-role-EC2 --assume-role-policy-document file://udacity-role-EC2-Trust-Policy.json
+
+aws iam attach-role-policy --role-name udacity-role-EC2 --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
+
+aws iam create-instance-profile --instance-profile-name udacity-role-EC2-Instance-Profile
+
+aws iam add-role-to-instance-profile --role-name udacity-role-EC2 --instance-profile-name udacity-role-EC2-Instance-Profile
+
+ 
+aws ec2 associate-iam-instance-profile --instance-id i-0c15a2f9cb5b921ea --iam-instance-profile Name=udacity-role-EC2-Instance-Profile
+
+
