@@ -1,0 +1,13 @@
+Description: >
+  This is Anthony Huerta udacity template for creating vpc.
+Resources: 
+  anthonysVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsSupport: 'false'
+      EnableDnsHostnames: 'true'
+      InstanceTenancy: dedicated
+      Tags:
+        - Key: foo
+          Value: bar
